@@ -1,4 +1,4 @@
-package com.yuriisurzhykov.goaldestinator
+package com.yuriisurzhykov.goaldestinator.core
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
