@@ -27,3 +27,12 @@ The app should have 3 screens:
       1. The minimum date must be tomorrow.
    4. The fourth screen is the confirmation and congratulation screen that confirm goal creation.
       1. The screen must disappear after 3 seconds.
+
+## Design
+You can find the design of project by the [link](https://www.figma.com/file/AGjhLRHiixnb586ylBQ6dX/Goal-Destinator)
+
+## APIs
+The application uses [Quotable](https://github.com/lukePeavey/quotable) API for the launch screen or screen with no goal.
+
+## Technology stack
+1. 
