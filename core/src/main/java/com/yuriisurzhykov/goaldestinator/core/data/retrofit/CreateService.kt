@@ -17,5 +17,4 @@ interface CreateService {
 
         override fun <T : Any> create(clazz: Class<T>): T = retrofit.create(clazz)
     }
-
 }

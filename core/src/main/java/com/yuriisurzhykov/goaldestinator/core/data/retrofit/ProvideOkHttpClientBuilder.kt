@@ -9,7 +9,8 @@ interface ProvideOkHttpClientBuilder {
     fun provide(): OkHttpClient.Builder
 
     class Base(
-        private val timeout: Long, private val timeoutUnit: TimeUnit = TimeUnit.SECONDS
+        private val timeout: Long,
+        private val timeoutUnit: TimeUnit = TimeUnit.SECONDS
     ) : ProvideOkHttpClientBuilder {
 
         override fun provide(): OkHttpClient.Builder {
