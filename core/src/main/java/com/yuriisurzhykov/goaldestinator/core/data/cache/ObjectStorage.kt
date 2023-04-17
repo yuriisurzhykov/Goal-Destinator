@@ -23,6 +23,5 @@ interface ObjectStorage {
             val json = stringStorage.read(key, defaultJson)
             return serialization.fromJson(json, default::class.java)
         }
-
     }
 }
