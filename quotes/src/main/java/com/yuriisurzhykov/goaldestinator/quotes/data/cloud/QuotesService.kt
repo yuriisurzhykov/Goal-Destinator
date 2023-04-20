@@ -1,4 +1,4 @@
-package com.yuriisurzhykov.goaldestinator.quotes.data
+package com.yuriisurzhykov.goaldestinator.quotes.data.cloud
 
 import retrofit2.Response
 import retrofit2.http.GET

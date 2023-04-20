@@ -1,8 +1,9 @@
-package com.yuriisurzhykov.goaldestinator.quotes.data
+package com.yuriisurzhykov.goaldestinator.quotes.data.cloud
 
 import com.google.gson.annotations.SerializedName
+import com.yuriisurzhykov.goaldestinator.core.data.cloud.CloudModel
 
-interface Quote {
+interface Quote : CloudModel {
 
     data class Base(
         @SerializedName("id")
