@@ -4,8 +4,8 @@ import com.yuriisurzhykov.goaldestinator.core.data.retrofit.ProvideConverterFact
 import com.yuriisurzhykov.goaldestinator.core.data.retrofit.ProvideGson
 import com.yuriisurzhykov.goaldestinator.core.data.retrofit.ProvideOkHttpClientBuilder
 import com.yuriisurzhykov.goaldestinator.core.data.retrofit.ProvideRetrofitBuilder
-import com.yuriisurzhykov.goaldestinator.quotes.data.QuoteCreateService
-import com.yuriisurzhykov.goaldestinator.quotes.data.QuotesService
+import com.yuriisurzhykov.goaldestinator.quotes.data.cloud.QuoteCreateService
+import com.yuriisurzhykov.goaldestinator.quotes.data.cloud.QuotesService
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Ignore

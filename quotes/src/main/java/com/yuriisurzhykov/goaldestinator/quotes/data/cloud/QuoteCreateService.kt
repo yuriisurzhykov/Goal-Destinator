@@ -1,4 +1,4 @@
-package com.yuriisurzhykov.goaldestinator.quotes.data
+package com.yuriisurzhykov.goaldestinator.quotes.data.cloud
 
 import com.yuriisurzhykov.goaldestinator.core.data.retrofit.CreateService
 import com.yuriisurzhykov.goaldestinator.core.data.retrofit.ProvideRetrofitBuilder
