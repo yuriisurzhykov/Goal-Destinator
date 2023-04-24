@@ -2,6 +2,7 @@ package com.yuriisurzhykov.goaldestinator.quotes.data.cache
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 
 interface QuoteCache {
 
@@ -14,9 +15,13 @@ interface QuoteCache {
     @Entity(tableName = "Quotes")
     data class Base(
         @PrimaryKey
+        @SerializedName("_id")
         private val id: String,
+        @SerializedName("author")
         private val author: String,
+        @SerializedName("content")
         private val content: String,
+        @SerializedName("dateModified")
         private val lastModified: String
     ) : QuoteCache {
 
