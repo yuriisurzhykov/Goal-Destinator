@@ -1,5 +1,6 @@
 package com.yuriisurzhykov.goaldestinator.quotes.data.cache
 
+import com.google.gson.reflect.TypeToken
 import com.yuriisurzhykov.goaldestinator.core.data.Serialization
 import com.yuriisurzhykov.goaldestinator.core.data.StringProvider
 
@@ -19,10 +20,10 @@ interface QuotesCacheDataSource {
     ) : QuotesCacheDataSource {
 
         override suspend fun quotes(): List<QuoteCache.Base> {
-            return serialization.fromJson(
-                stringProvider.provide(),
-                ArrayList::class.java
-            ) as ArrayList<QuoteCache.Base>
+            val string = stringProvider.provide()
+            if (string.isBlank()) return emptyList()
+            val type = object : TypeToken<ArrayList<QuoteCache.Base>>() {}.type
+            return serialization.fromJson(string, type)
         }
     }
 
