@@ -38,7 +38,8 @@ class QuotesCacheDataSourceTest {
             QuoteCache.Base(
                 id = "XtZMaD2s28",
                 author = "Thomas Edison",
-                content = "If we all did the things we are capable of doing, we would literally astound ourselves.",
+                content = "If we all did the things we are capable of doing, " +
+                        "we would literally astound ourselves.",
                 lastModified = "2023-04-14"
             )
         )
@@ -64,8 +65,8 @@ class QuotesCacheDataSourceTest {
         }
         val serialization = Serialization.Base(ProvideGson.Base())
         val localStorage = QuotesCacheDataSource.LocalSamples(stringProvider, serialization)
-        val dataSource =
-            QuotesCacheDataSource.WithAlternative(QuotesCacheDataSource.Dao(dao), localStorage)
+        val dataSource = QuotesCacheDataSource
+            .WithAlternative(QuotesCacheDataSource.Dao(dao), localStorage)
         assertEquals(emptyList<QuoteCache.Base>(), dataSource.quotes())
     }
 
@@ -81,7 +82,8 @@ class QuotesCacheDataSourceTest {
             QuoteCache.Base(
                 id = "XtZMaD2s28",
                 author = "Thomas Edison",
-                content = "If we all did the things we are capable of doing, we would literally astound ourselves.",
+                content = "If we all did the things we are capable of doing, " +
+                        "we would literally astound ourselves.",
                 lastModified = "2023-04-14"
             )
         )
@@ -96,8 +98,8 @@ class QuotesCacheDataSourceTest {
         val stringProvider = TestLocalSamplesStringProvider()
         val serialization = Serialization.Base(ProvideGson.Base())
         val localStorage = QuotesCacheDataSource.LocalSamples(stringProvider, serialization)
-        val dataSource =
-            QuotesCacheDataSource.WithAlternative(QuotesCacheDataSource.Dao(dao), localStorage)
+        val dataSource = QuotesCacheDataSource
+                .WithAlternative(QuotesCacheDataSource.Dao(dao), localStorage)
         val expected = dao.dataList
         assertEquals(expected, dataSource.quotes())
     }
@@ -123,7 +125,8 @@ private class TestQuotesDao(
         )
     )
 
-    override suspend fun quotes(): List<QuoteCache.Base> = if (isEmpty) emptyList else dataList
+    override suspend fun quotes(): List<QuoteCache.Base> =
+        if (isEmpty) emptyList else dataList
 
     override suspend fun insert(entity: QuoteCache.Base) {
         dataList.add(entity)
@@ -138,7 +141,8 @@ private class TestLocalSamplesStringProvider : SamplesStringProvider {
     override fun provide() = "[{\n" +
             "\"_id\":\"XtZMaD2s28\",\n" +
             "\"author\":\"Thomas Edison\",\n" +
-            "\"content\":\"If we all did the things we are capable of doing, we would literally astound ourselves.\",\n" +
+            "\"content\":\"If we all did the things we are capable of doing, " +
+            "we would literally astound ourselves.\",\n" +
             "\"dateModified\":\"2023-04-14\"\n" +
             "}]"
 }
