@@ -1,7 +1,7 @@
 package com.yuriisurzhykov.goaldestinator.quotes.data.cache
 
-import android.content.Context
 import com.yuriisurzhykov.goaldestinator.core.data.Serialization
+import com.yuriisurzhykov.goaldestinator.core.data.StringProvider
 
 interface QuotesCacheDataSource {
 
@@ -14,18 +14,15 @@ interface QuotesCacheDataSource {
     }
 
     class LocalSamples(
-        private val context: Context,
+        private val stringProvider: StringProvider,
         private val serialization: Serialization
     ) : QuotesCacheDataSource {
 
         override suspend fun quotes(): List<QuoteCache.Base> {
-            return context.assets.open("samples.json").use {
-                val string = it.readBytes().toString(Charsets.UTF_8)
-                return@use serialization.fromJson(
-                    string,
-                    ArrayList::class.java
-                ) as ArrayList<QuoteCache.Base>
-            }
+            return serialization.fromJson(
+                stringProvider.provide(),
+                ArrayList::class.java
+            ) as ArrayList<QuoteCache.Base>
         }
     }
 
@@ -41,7 +38,7 @@ interface QuotesCacheDataSource {
 
     class Base(
         dao: QuotesDao,
-        context: Context,
+        context: StringProvider,
         serialization: Serialization
     ) : WithAlternative(
         Dao(dao),
