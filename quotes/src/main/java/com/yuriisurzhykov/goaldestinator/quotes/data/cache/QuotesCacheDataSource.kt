@@ -22,7 +22,8 @@ interface QuotesCacheDataSource {
             return context.assets.open("samples.json").use {
                 val string = it.readBytes().toString(Charsets.UTF_8)
                 return@use serialization.fromJson(
-                    string, ArrayList::class.java
+                    string,
+                    ArrayList::class.java
                 ) as ArrayList<QuoteCache.Base>
             }
         }
