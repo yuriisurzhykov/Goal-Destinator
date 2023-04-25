@@ -21,7 +21,7 @@ class QuotesServiceCallTest {
         val provideRetrofit =
             ProvideRetrofitBuilder.Base(provideOkHttpClientBuilder, provideConverterFactory)
         val service = QuoteCreateService.Base(provideRetrofit).create(QuotesService::class.java)
-        val response = service.randomQuote("motivational")
+        val response = service.quotes("motivational")
         assertEquals(true, response.isSuccessful)
     }
 }
