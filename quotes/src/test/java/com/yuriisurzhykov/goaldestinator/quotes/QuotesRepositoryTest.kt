@@ -59,7 +59,6 @@ private class TestQuoteCacheDataSource : QuotesCacheDataSource {
     override suspend fun quotes(): List<QuoteCache.Base> = dataList
 }
 
-
 private class TestQuoteCloudDataSource : QuotesCloudDataSource {
 
     var exception: Exception? = null
