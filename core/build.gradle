@@ -33,10 +33,10 @@ android {
 
 dependencies {
 
-    implementation "androidx.core:core-ktx:1.10.0"
-    implementation "androidx.appcompat:appcompat:1.6.1"
-    implementation "com.google.android.material:material:1.8.0"
-    api 'com.google.devtools.ksp:symbol-processing-api:1.8.0-1.0.9'
+    api "androidx.core:core-ktx:1.10.0"
+    api "androidx.appcompat:appcompat:1.6.1"
+    api "com.google.android.material:material:1.8.0"
+    api 'com.google.devtools.ksp:symbol-processing-api:1.8.10-1.0.9'
 
     def retrofit_version = "2.9.0"
     api "com.squareup.retrofit2:retrofit:$retrofit_version"
