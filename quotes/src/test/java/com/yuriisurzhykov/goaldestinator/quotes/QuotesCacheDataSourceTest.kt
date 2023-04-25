@@ -90,8 +90,6 @@ class QuotesCacheDataSourceTest {
         assertEquals(expected, dataSource.quotes())
     }
 
-
-
     @Test
     fun `data source with alternative all sources with only cache data`(): Unit = runBlocking {
         val dao = TestQuotesDao(false)
@@ -99,7 +97,7 @@ class QuotesCacheDataSourceTest {
         val serialization = Serialization.Base(ProvideGson.Base())
         val localStorage = QuotesCacheDataSource.LocalSamples(stringProvider, serialization)
         val dataSource = QuotesCacheDataSource
-                .WithAlternative(QuotesCacheDataSource.Dao(dao), localStorage)
+            .WithAlternative(QuotesCacheDataSource.Dao(dao), localStorage)
         val expected = dao.dataList
         assertEquals(expected, dataSource.quotes())
     }
@@ -130,6 +128,10 @@ private class TestQuotesDao(
 
     override suspend fun insert(entity: QuoteCache.Base) {
         dataList.add(entity)
+    }
+
+    override suspend fun insertAll(entity: List<QuoteCache.Base>) {
+        dataList.addAll(entity)
     }
 
     override suspend fun delete(entity: QuoteCache.Base) {
