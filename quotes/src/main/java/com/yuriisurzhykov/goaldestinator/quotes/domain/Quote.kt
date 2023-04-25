@@ -8,7 +8,7 @@ interface Quote {
 
     fun <T : Any> map(mapper: Mapper<T>): T
 
-    class Base(
+    data class Base(
         private val author: String,
         private val content: String
     ) : Quote {
