@@ -1,11 +1,11 @@
 package com.yuriisurzhykov.goaldestinator.quotes
 
-import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.yuriisurzhykov.goaldestinator.coretest.TestCoroutineDispatcherCalls
 import com.yuriisurzhykov.goaldestinator.coretest.TestCoroutineDispatchers
+import com.yuriisurzhykov.goaldestinator.coretest.TestEmptyObserver
 import com.yuriisurzhykov.goaldestinator.coretest.lifecycle.TestLifecycle
 import com.yuriisurzhykov.goaldestinator.coretest.lifecycle.TestLifecycleOwner
 import com.yuriisurzhykov.goaldestinator.quotes.domain.Quote
@@ -23,14 +23,16 @@ class QuoteViewModelTest {
         val useCase = TestQuotesUseCase()
         val communication = TestQuoteCommunication()
         val viewModel = QuoteViewModel(dispatchers, useCase, communication)
-        viewModel.observe(TestLifecycleOwner(TestLifecycle(Lifecycle.State.RESUMED))) {
-            Log.d("TAG", "view model init and recreate view: $it")
-        }
+        viewModel.observe(
+            TestLifecycleOwner(TestLifecycle(Lifecycle.State.RESUMED)),
+            TestEmptyObserver()
+        )
         assertEquals(1, communication.observeCounts)
         assertEquals(1, communication.changesCount)
-        viewModel.observe(TestLifecycleOwner(TestLifecycle(Lifecycle.State.RESUMED))) {
-            Log.d("TAG", "view model init and recreate view: $it")
-        }
+        viewModel.observe(
+            TestLifecycleOwner(TestLifecycle(Lifecycle.State.RESUMED)),
+            TestEmptyObserver()
+        )
         assertEquals(2, communication.observeCounts)
         assertEquals(1, communication.changesCount)
         assertEquals(useCase.quote, communication.value)
