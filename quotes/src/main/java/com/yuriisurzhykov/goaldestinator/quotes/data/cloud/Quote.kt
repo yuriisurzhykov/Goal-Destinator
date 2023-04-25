@@ -13,7 +13,7 @@ interface Quote : CloudModel {
             authorSlug: String,
             length: Long,
             tags: List<String>,
-            dateModified: String,
+            dateModified: String
         ): T
     }
 
