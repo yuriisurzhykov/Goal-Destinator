@@ -1,5 +1,6 @@
 package com.yuriisurzhykov.goaldestinator.quotes
 
+import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
@@ -23,12 +24,12 @@ class QuoteViewModelTest {
         val communication = TestQuoteCommunication()
         val viewModel = QuoteViewModel(dispatchers, useCase, communication)
         viewModel.observe(TestLifecycleOwner(TestLifecycle(Lifecycle.State.RESUMED))) {
-
+            Log.d("TAG", "view model init and recreate view: $it")
         }
         assertEquals(1, communication.observeCounts)
         assertEquals(1, communication.changesCount)
         viewModel.observe(TestLifecycleOwner(TestLifecycle(Lifecycle.State.RESUMED))) {
-
+            Log.d("TAG", "view model init and recreate view: $it")
         }
         assertEquals(2, communication.observeCounts)
         assertEquals(1, communication.changesCount)
