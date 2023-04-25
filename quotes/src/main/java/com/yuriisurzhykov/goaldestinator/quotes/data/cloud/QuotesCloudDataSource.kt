@@ -8,7 +8,7 @@ interface QuotesCloudDataSource : DataSource<QuotesList.Base> {
     abstract class Abstract(
         private val quotesService: QuotesService,
         private val tags: List<String>
-    ) : AbstractCloudDataSource(), QuotesCloudDataSource {
+    ) : AbstractCloudDataSource("/quotes"), QuotesCloudDataSource {
 
         override suspend fun data(): QuotesList.Base {
             return handle {
