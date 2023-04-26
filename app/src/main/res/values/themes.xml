@@ -1,4 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.GoalDestinator" parent="Theme.Material3.DynamicColors.DayNight" />
+    <style name="Theme.GoalDestinator" parent="Theme.Material3.DynamicColors.DayNight">
+        <item name="android:windowActionBar">false</item>
+        <item name="windowActionBar">false</item>
+    </style>
 </resources>

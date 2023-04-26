@@ -1,11 +1,11 @@
 package com.yuriisurzhykov.goaldestinator.core.presentation
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.yuriisurzhykov.goaldestinator.core.R
 
-abstract class AbstractFragmentActivity : AppCompatActivity() {
+abstract class AbstractFragmentActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

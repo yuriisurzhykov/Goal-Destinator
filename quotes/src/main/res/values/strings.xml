@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="button_create">Create</string>
+    <string name="button_create_goal">Change my life</string>
+    <string name="label_no_any_goals">Sad to realize, but You have no any goals!</string>
 </resources>

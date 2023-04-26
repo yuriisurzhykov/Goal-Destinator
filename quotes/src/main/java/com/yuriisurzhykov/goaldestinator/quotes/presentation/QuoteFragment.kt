@@ -25,10 +25,11 @@ class QuoteFragment : Fragment(R.layout.fragment_quote_preview) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val textView = view.findViewById<TextView>(R.id.quote_text)
-        textView.movementMethod = ScrollingMovementMethod()
+        val quoteTextView = view.findViewById<TextView>(R.id.quote_text)
+        quoteTextView.movementMethod = ScrollingMovementMethod()
+        val authorView = view.findViewById<TextView>(R.id.author)
         viewModel?.observe(viewLifecycleOwner) {
-            it.map(Quote.Mapper.ApplyToView(textView))
+            it.map(Quote.Mapper.ApplyToView(quoteTextView, authorView))
         }
     }
 }
