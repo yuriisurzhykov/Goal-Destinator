@@ -6,6 +6,6 @@ import retrofit2.http.Query
 
 interface QuotesService {
 
-    @GET("random")
+    @GET("quotes")
     suspend fun quotes(@Query("tags") tags: String): Response<QuotesList.Base>
 }

@@ -5,13 +5,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 interface ProvideConverterFactory {
 
-    fun provide(): Converter.Factory
+    fun provideConverterFactory(): Converter.Factory
 
     class Gson(
-        private val provideGson: ProvideGson
+        private val provideGson: com.google.gson.Gson
     ) : ProvideConverterFactory {
 
-        override fun provide(): Converter.Factory =
-            GsonConverterFactory.create(provideGson.provide())
+        override fun provideConverterFactory(): Converter.Factory =
+            GsonConverterFactory.create(provideGson)
     }
 }

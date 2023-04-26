@@ -20,7 +20,7 @@ interface Quote : CloudModel {
     fun <T : Any> map(mapper: Mapper<T>): T
 
     data class Base(
-        @SerializedName("id")
+        @SerializedName("_id")
         private val id: String,
         @SerializedName("content")
         private val content: String,

@@ -13,7 +13,7 @@ interface Serialization {
         provideGson: ProvideGson
     ) : Serialization {
 
-        private val gson by lazy { provideGson.provide() }
+        private val gson by lazy { provideGson.provideGson() }
 
         override fun toJson(source: Any): String = gson.toJson(source)
 

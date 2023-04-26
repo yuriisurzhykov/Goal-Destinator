@@ -6,16 +6,18 @@ import okhttp3.OkHttpClient
 
 interface ProvideOkHttpClientBuilder {
 
-    fun provide(): OkHttpClient.Builder
+    fun provideClientBuilder(): OkHttpClient.Builder
 
     class Base(
         private val timeout: Long = 60,
         private val timeoutUnit: TimeUnit = TimeUnit.SECONDS
     ) : ProvideOkHttpClientBuilder {
 
-        override fun provide(): OkHttpClient.Builder {
-            return OkHttpClient.Builder().callTimeout(timeout, timeoutUnit)
-                .retryOnConnectionFailure(true).readTimeout(timeout, timeoutUnit)
+        override fun provideClientBuilder(): OkHttpClient.Builder {
+            return OkHttpClient.Builder()
+                .callTimeout(timeout, timeoutUnit)
+                .retryOnConnectionFailure(true)
+                .readTimeout(timeout, timeoutUnit)
         }
     }
 
@@ -23,6 +25,7 @@ interface ProvideOkHttpClientBuilder {
         private val interceptor: Interceptor,
         private val provide: ProvideOkHttpClientBuilder
     ) : ProvideOkHttpClientBuilder {
-        override fun provide() = provide.provide().addInterceptor(interceptor)
+        override fun provideClientBuilder() =
+            provide.provideClientBuilder().addInterceptor(interceptor)
     }
 }

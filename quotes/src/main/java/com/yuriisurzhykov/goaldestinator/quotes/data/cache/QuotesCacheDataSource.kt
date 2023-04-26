@@ -39,10 +39,10 @@ interface QuotesCacheDataSource {
 
     class Base(
         dao: QuotesDao,
-        context: StringProvider,
+        stringProvider: StringProvider,
         serialization: Serialization
     ) : WithAlternative(
         Dao(dao),
-        LocalSamples(context, serialization)
+        LocalSamples(stringProvider, serialization)
     )
 }

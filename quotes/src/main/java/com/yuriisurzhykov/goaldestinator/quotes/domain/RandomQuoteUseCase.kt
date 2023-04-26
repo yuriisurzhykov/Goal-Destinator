@@ -1,8 +1,9 @@
 package com.yuriisurzhykov.goaldestinator.quotes.domain
 
+import com.yuriisurzhykov.goaldestinator.core.domain.UseCase
 import com.yuriisurzhykov.goaldestinator.quotes.data.QuotesRepository
 
-interface RandomQuoteUseCase {
+interface RandomQuoteUseCase : UseCase {
 
     suspend fun quote(): Quote
 
@@ -11,6 +12,8 @@ interface RandomQuoteUseCase {
         private val mapper: QuoteCacheToDomainMapper
     ) : RandomQuoteUseCase {
 
-        override suspend fun quote(): Quote = repository.quotes().random().map(mapper)
+        override suspend fun quote(): Quote {
+            return repository.quotes().random().map(mapper)
+        }
     }
 }
