@@ -6,5 +6,6 @@ import com.yuriisurzhykov.goaldestinator.core.data.cache.ProvideDatabase
 class QuotesProvideDatabase(
     context: Context
 ) : ProvideDatabase.Abstract(
-    context, "quotes.db"
+    context,
+    "quotes.db"
 )

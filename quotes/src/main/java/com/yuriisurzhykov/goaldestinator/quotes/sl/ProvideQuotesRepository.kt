@@ -15,7 +15,6 @@ import com.yuriisurzhykov.goaldestinator.quotes.data.cloud.QuotesCloudDataSource
 import com.yuriisurzhykov.goaldestinator.quotes.data.cloud.QuotesService
 import com.yuriisurzhykov.goaldestinator.quotes.domain.SamplesStringProvider
 
-
 interface ProvideQuotesRepository : ProvideRepository<QuotesRepository> {
 
     class Base(

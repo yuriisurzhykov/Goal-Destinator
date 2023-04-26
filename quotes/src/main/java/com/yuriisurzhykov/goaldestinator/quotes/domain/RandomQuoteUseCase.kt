@@ -3,7 +3,7 @@ package com.yuriisurzhykov.goaldestinator.quotes.domain
 import com.yuriisurzhykov.goaldestinator.core.domain.UseCase
 import com.yuriisurzhykov.goaldestinator.quotes.data.QuotesRepository
 
-interface RandomQuoteUseCase: UseCase {
+interface RandomQuoteUseCase : UseCase {
 
     suspend fun quote(): Quote
 

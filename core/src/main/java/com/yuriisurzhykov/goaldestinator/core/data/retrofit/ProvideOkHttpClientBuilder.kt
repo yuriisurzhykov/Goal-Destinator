@@ -14,8 +14,10 @@ interface ProvideOkHttpClientBuilder {
     ) : ProvideOkHttpClientBuilder {
 
         override fun provideClientBuilder(): OkHttpClient.Builder {
-            return OkHttpClient.Builder().callTimeout(timeout, timeoutUnit)
-                .retryOnConnectionFailure(true).readTimeout(timeout, timeoutUnit)
+            return OkHttpClient.Builder()
+                .callTimeout(timeout, timeoutUnit)
+                .retryOnConnectionFailure(true)
+                .readTimeout(timeout, timeoutUnit)
         }
     }
 
@@ -23,6 +25,7 @@ interface ProvideOkHttpClientBuilder {
         private val interceptor: Interceptor,
         private val provide: ProvideOkHttpClientBuilder
     ) : ProvideOkHttpClientBuilder {
-        override fun provideClientBuilder() = provide.provideClientBuilder().addInterceptor(interceptor)
+        override fun provideClientBuilder() =
+            provide.provideClientBuilder().addInterceptor(interceptor)
     }
 }
