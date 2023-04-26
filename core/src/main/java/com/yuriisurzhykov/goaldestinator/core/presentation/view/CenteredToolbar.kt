@@ -21,7 +21,7 @@ class CenteredToolbar : Toolbar {
     )
 
     override fun setTitle(resId: Int) {
-        val s = resources.getString(resId);
+        val s = resources.getString(resId)
         title = s
     }
 
@@ -39,17 +39,17 @@ class CenteredToolbar : Toolbar {
 
     private fun getCenteredTitleTextView(): TextView {
         if (centeredTitleTextView == null) {
-            val centeredTitleTextView = TextView(context);
-            centeredTitleTextView.setSingleLine();
-            centeredTitleTextView.ellipsize = TextUtils.TruncateAt.END;
-            centeredTitleTextView.gravity = Gravity.CENTER;
+            val centeredTitleTextView = TextView(context)
+            centeredTitleTextView.setSingleLine()
+            centeredTitleTextView.ellipsize = TextUtils.TruncateAt.END
+            centeredTitleTextView.gravity = Gravity.CENTER
             centeredTitleTextView.setTextAppearance(
                 context,
                 com.google.android.material.R.style.TextAppearance_Material3_ActionBar_Title
-            );
+            )
 
             val lp = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-            lp.gravity = Gravity.CENTER;
+            lp.gravity = Gravity.CENTER
             centeredTitleTextView.layoutParams = lp
             addView(centeredTitleTextView)
             this.centeredTitleTextView = centeredTitleTextView
