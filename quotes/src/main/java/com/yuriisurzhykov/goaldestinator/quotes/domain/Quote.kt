@@ -9,10 +9,12 @@ interface Quote {
         fun map(author: String, content: String): T
 
         class ApplyToView(
-            private val view: TextView
+            private val contentView: TextView,
+            private val authorView: TextView
         ) : Mapper<Unit> {
             override fun map(author: String, content: String) {
-                view.text = content
+                contentView.text = content
+                authorView.text = author
             }
         }
     }
