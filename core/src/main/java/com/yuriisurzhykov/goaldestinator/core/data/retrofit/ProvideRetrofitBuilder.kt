@@ -4,15 +4,15 @@ import retrofit2.Retrofit
 
 interface ProvideRetrofitBuilder {
 
-    fun provide(): Retrofit.Builder
+    fun provideRetrofitBuilder(): Retrofit.Builder
 
     class Base(
         private val provideOkHttp: ProvideOkHttpClientBuilder,
         private val provideFactory: ProvideConverterFactory
     ) : ProvideRetrofitBuilder {
 
-        override fun provide(): Retrofit.Builder = Retrofit.Builder()
-            .client(provideOkHttp.provide().build())
-            .addConverterFactory(provideFactory.provide())
+        override fun provideRetrofitBuilder(): Retrofit.Builder = Retrofit.Builder()
+            .client(provideOkHttp.provideClientBuilder().build())
+            .addConverterFactory(provideFactory.provideConverterFactory())
     }
 }

@@ -16,13 +16,13 @@ interface QuoteCache {
     data class Base(
         @PrimaryKey
         @SerializedName("_id")
-        private val id: String,
+        val id: String,
         @SerializedName("author")
-        private val author: String,
+        val author: String,
         @SerializedName("content")
-        private val content: String,
+        val content: String,
         @SerializedName("dateModified")
-        private val lastModified: String
+        val lastModified: String
     ) : QuoteCache {
 
         override fun <T : Any> map(mapper: Mapper<T>): T {

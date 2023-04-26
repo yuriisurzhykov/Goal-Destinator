@@ -22,6 +22,7 @@ interface QuotesRepository {
                 quotesDao.insertAll(cloud)
                 cloud
             } catch (e: Exception) {
+                e.printStackTrace()
                 quotesCacheDataSource.quotes()
             }
         }

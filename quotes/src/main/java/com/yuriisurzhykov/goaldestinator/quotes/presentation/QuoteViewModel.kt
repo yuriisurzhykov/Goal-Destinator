@@ -17,7 +17,9 @@ class QuoteViewModel(
     init {
         dispatchers.io(viewModelScope) {
             val quote = quoteUseCase.quote()
-            quoteCommunication.update(quote)
+            dispatchers.switchUi {
+                quoteCommunication.update(quote)
+            }
         }
     }
 

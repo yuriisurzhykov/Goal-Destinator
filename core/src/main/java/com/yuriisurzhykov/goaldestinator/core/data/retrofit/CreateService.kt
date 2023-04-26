@@ -10,7 +10,7 @@ interface CreateService {
     ) : CreateService {
 
         private val retrofit by lazy {
-            provider.provide()
+            provider.provideRetrofitBuilder()
                 .baseUrl(baseUrl)
                 .build()
         }

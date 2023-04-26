@@ -17,7 +17,7 @@ class QuotesServiceCallTest {
     @Ignore("Call only locally through Android Studio")
     fun `test api call with success`(): Unit = runBlocking {
         val provideOkHttpClientBuilder = ProvideOkHttpClientBuilder.Base()
-        val provideConverterFactory = ProvideConverterFactory.Gson(ProvideGson.Base())
+        val provideConverterFactory = ProvideConverterFactory.Gson(ProvideGson.Base().provideGson())
         val provideRetrofit =
             ProvideRetrofitBuilder.Base(provideOkHttpClientBuilder, provideConverterFactory)
         val service = QuoteCreateService.Base(provideRetrofit).create(QuotesService::class.java)
