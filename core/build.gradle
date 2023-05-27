@@ -33,9 +33,9 @@ android {
 
 dependencies {
 
-    api "androidx.core:core-ktx:1.10.0"
+    api "androidx.core:core-ktx:1.10.1"
     api "androidx.appcompat:appcompat:1.6.1"
-    api "com.google.android.material:material:1.8.0"
+    api "com.google.android.material:material:1.9.0"
     api 'com.google.devtools.ksp:symbol-processing-api:1.8.10-1.0.9'
 
     def retrofit_version = "2.9.0"
