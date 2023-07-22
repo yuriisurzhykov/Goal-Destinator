@@ -6,6 +6,7 @@ import java.lang.ref.SoftReference
 interface MonthData {
 
     interface Mapper<T : Any> {
+
         fun map(name: String, order: Int): T
 
         class ApplyTextView(
@@ -17,6 +18,10 @@ interface MonthData {
             override fun map(name: String, order: Int) {
                 textViewRef.get()?.text = name
             }
+        }
+
+        class MonthValue : Mapper<Int> {
+            override fun map(name: String, order: Int): Int = order
         }
     }
 

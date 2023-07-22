@@ -31,4 +31,21 @@ class MonthNamesSourceTest {
         val actualResult = testClass.listOfMonths()
         assertEquals(expectedResult, actualResult)
     }
+
+    @Test
+    fun `test when selected current half year`() {
+        val locale = Locale.US
+        val calendar = Calendar.getInstance(locale).apply {
+            set(Calendar.MONTH, Calendar.OCTOBER)
+        }
+        val formatter = CalendarFormat.MonthName(locale)
+        val testClass = MonthNamesSource.Base(formatter, calendar)
+        val expectedResult = listOf(
+            MonthData.Base("October", 10),
+            MonthData.Base("November", 11),
+            MonthData.Base("December", 12),
+        )
+        val actualResult = testClass.listOfMonths(calendar.get(Calendar.MONTH))
+        assertEquals(expectedResult, actualResult)
+    }
 }
