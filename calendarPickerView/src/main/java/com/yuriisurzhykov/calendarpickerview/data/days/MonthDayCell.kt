@@ -1,4 +1,4 @@
-package com.yuriisurzhykov.calendarpickerview
+package com.yuriisurzhykov.calendarpickerview.data.days
 
 interface MonthDayCell {
 

@@ -1,5 +1,6 @@
 package com.yuriisurzhykov.calendarpickerview
 
+import com.yuriisurzhykov.calendarpickerview.data.CalendarFormat
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.util.Calendar
@@ -22,7 +23,7 @@ class CalendarFormatTest {
     @Test
     fun `test format month name for USA monday`() {
         val locale = Locale.US
-        val testClass = CalendarFormat.MonthName(locale)
+        val testClass = CalendarFormat.MonthShortName(locale)
         val date = Calendar.getInstance(locale).apply {
             set(Calendar.MONTH, Calendar.DECEMBER)
         }.time

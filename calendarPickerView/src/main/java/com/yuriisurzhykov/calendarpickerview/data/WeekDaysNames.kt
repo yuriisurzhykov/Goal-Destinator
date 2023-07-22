@@ -1,4 +1,4 @@
-package com.yuriisurzhykov.calendarpickerview
+package com.yuriisurzhykov.calendarpickerview.data
 
 import java.util.Calendar
 import java.util.Locale

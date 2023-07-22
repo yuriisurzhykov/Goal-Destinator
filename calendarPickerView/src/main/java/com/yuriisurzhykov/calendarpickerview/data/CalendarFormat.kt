@@ -1,4 +1,4 @@
-package com.yuriisurzhykov.calendarpickerview
+package com.yuriisurzhykov.calendarpickerview.data
 
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,9 +29,13 @@ interface CalendarFormat {
         locale: Locale
     ) : Abstract("EEE", locale)
 
-    class MonthName(
+    class MonthShortName(
         locale: Locale
     ) : Abstract("MMM", locale)
+
+    class MonthName(
+        locale: Locale
+    ) : Abstract("MMMM", locale)
 
     class DayOfMonth(
         locale: Locale

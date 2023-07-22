@@ -1,5 +1,7 @@
 package com.yuriisurzhykov.calendarpickerview
 
+import com.yuriisurzhykov.calendarpickerview.data.days.MonthDayCell
+import com.yuriisurzhykov.calendarpickerview.data.days.MonthDaysList
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.util.*

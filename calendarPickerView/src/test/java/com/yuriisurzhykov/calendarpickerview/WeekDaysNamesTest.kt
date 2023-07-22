@@ -1,8 +1,9 @@
 package com.yuriisurzhykov.calendarpickerview
 
+import com.yuriisurzhykov.calendarpickerview.data.CalendarFormat
+import com.yuriisurzhykov.calendarpickerview.data.WeekDaysNames
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import java.time.ZoneId
 import java.util.*
 
 class WeekDaysNamesTest {
