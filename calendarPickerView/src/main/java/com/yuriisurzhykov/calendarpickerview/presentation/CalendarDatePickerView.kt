@@ -10,6 +10,8 @@ import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.yuriisurzhykov.calendarpickerview.R
 import com.yuriisurzhykov.calendarpickerview.data.months.MonthData
 import com.yuriisurzhykov.calendarpickerview.sl.CalendarDependenciesProvider
@@ -24,12 +26,16 @@ class CalendarDatePickerView : ConstraintLayout {
     private val weekNamesSource = CalendarDependenciesProvider.weekDaysNames()
     private val monthsNamesSource = CalendarDependenciesProvider.monthsNames()
     private val yearsSource = CalendarDependenciesProvider.yearsSource()
+    private val monthDaysSource = CalendarDependenciesProvider.monthDaysSource()
 
     private var onDateChangeListener: OnDateChangeListener? = null
     private var selectedDay: Int = Date().day
 
     private val yearSpinner: Spinner
     private val monthSpinner: Spinner
+    private val monthRecycler: RecyclerView
+
+    private val monthsCellsAdapter: MonthCellAdapter
 
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
@@ -42,7 +48,7 @@ class CalendarDatePickerView : ConstraintLayout {
         inflater.inflate(R.layout.layout_calendar_picker_view, this, true)
         val weekNamesRoot = findViewById<ViewGroup>(R.id.week_names)
         weekNamesSource.getWeekDayNames().forEach { weekDayName ->
-            val rootView = inflater.inflate(R.layout.layout_week_name, weekNamesRoot, false)
+            val rootView = inflater.inflate(R.layout.layout_month_cell, weekNamesRoot, false)
             val textView = rootView.findViewById<TextView>(android.R.id.text1)
             textView.text = weekDayName
             weekNamesRoot.addView(rootView)
@@ -56,20 +62,22 @@ class CalendarDatePickerView : ConstraintLayout {
         yearSpinner.adapter = yearAdapter
         yearSpinner.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
+                parent: AdapterView<*>?, view: View?, position: Int, id: Long
             ) {
                 val monthPreSelection =
                     (monthSpinner.selectedItem as MonthData).map(MonthData.Mapper.MonthValue())
                 monthAdapter.clear()
                 val listOfMonths = monthsNamesSource.listOfMonths(yearAdapter.getItem(position)!!)
                 monthAdapter.addAll(listOfMonths)
-                if (monthPreSelection <= listOfMonths.first().map(MonthData.Mapper.MonthValue())) {
+                val newFirstMonthValue = listOfMonths.first().map(MonthData.Mapper.MonthValue())
+                if (monthPreSelection <= newFirstMonthValue) {
                     monthSpinner.setSelection(0)
                 } else {
-                    monthSpinner.setSelection(monthPreSelection - 1)
+                    if (newFirstMonthValue == 1) {
+                        monthSpinner.setSelection(monthPreSelection - 1)
+                    } else {
+                        monthSpinner.setSelection(12 - listOfMonths.size - monthPreSelection)
+                    }
                 }
             }
 
@@ -78,6 +86,13 @@ class CalendarDatePickerView : ConstraintLayout {
                 monthAdapter.addAll(monthsNamesSource.listOfMonths(Date().year))
             }
         }
+
+        monthRecycler = findViewById(R.id.dates_list)
+        monthRecycler.layoutManager =
+            GridLayoutManager(context, 7, RecyclerView.VERTICAL, false)
+        monthsCellsAdapter = MonthCellAdapter()
+        monthRecycler.adapter = monthsCellsAdapter
+        monthsCellsAdapter.submitList(monthDaysSource.listOfWeeks())
     }
 
     fun setOnDateChangeListener(listener: OnDateChangeListener) {

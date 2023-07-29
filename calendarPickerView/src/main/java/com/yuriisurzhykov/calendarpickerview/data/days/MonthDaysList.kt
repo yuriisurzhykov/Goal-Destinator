@@ -4,13 +4,13 @@ import java.util.Calendar
 
 interface MonthDaysList {
 
-    fun listOfWeeks(): List<List<MonthDayCell>>
+    fun listOfWeeks(): List<MonthDayCell>
 
     class Base(
         private val calendar: Calendar
     ) : MonthDaysList {
 
-        override fun listOfWeeks(): List<List<MonthDayCell>> {
+        override fun listOfWeeks(): List<MonthDayCell> {
             val resultList = mutableListOf<List<MonthDayCell>>()
             calendar.set(Calendar.DAY_OF_MONTH, 1)
             val currentMonth = calendar.get(Calendar.MONTH)
@@ -43,7 +43,7 @@ interface MonthDaysList {
                 }
                 resultList.add(weekList)
             }
-            return resultList
+            return resultList.flatten()
         }
     }
 }
