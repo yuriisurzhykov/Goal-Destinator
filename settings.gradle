@@ -16,5 +16,5 @@ rootProject.name = "Goal Destinator"
 include ':app'
 include ':core'
 include ':quotes'
-include ':coreTest'
-include ':goalsCreation'
+include ':core-test'
+include ':goals-creation'
