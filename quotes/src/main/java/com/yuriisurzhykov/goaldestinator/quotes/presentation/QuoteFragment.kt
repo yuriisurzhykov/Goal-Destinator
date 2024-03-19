@@ -15,12 +15,13 @@ class QuoteFragment : Fragment(R.layout.fragment_quote_preview) {
 
     private var viewModel: QuoteViewModel? = null
 
+    @Suppress("ReplaceGetOrSet")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val module =
-            (activity!!.application as QuotesCoreModule).provideQuoteDependencyContainer()
-        viewModel =
-            ViewModelProvider(activity!!, ViewModelsFactory(module))[QuoteViewModel::class.java]
+        val module = (requireActivity().application as QuotesCoreModule)
+            .provideQuoteDependencyContainer()
+        viewModel = ViewModelProvider(requireActivity(), ViewModelsFactory(module))
+            .get(QuoteViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
