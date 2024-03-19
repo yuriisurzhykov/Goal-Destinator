@@ -33,8 +33,8 @@ android {
 
 dependencies {
     implementation project(":core")
-    ksp "androidx.room:room-compiler:${rootProject.ext.room_version}"
-    testImplementation project(":coreTest")
+    ksp "androidx.room:room-compiler:2.6.1"
+    testImplementation project(':core-test')
     androidTestImplementation "androidx.test.ext:junit:1.1.5"
     androidTestImplementation "androidx.test.espresso:espresso-core:3.5.1"
 }
