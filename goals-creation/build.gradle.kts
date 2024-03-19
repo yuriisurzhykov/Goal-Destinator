@@ -6,10 +6,10 @@ plugins {
 
 android {
     namespace = "com.yuriisurzhykov.goaldestinator.goalsCreation"
-    compileSdk = 34
+    compileSdk = ProjectProperties.compileSdk
 
     defaultConfig {
-        minSdk = 26
+        minSdk = ProjectProperties.minSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -25,11 +25,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = ProjectProperties.javaSourceCompatibility
+        targetCompatibility = ProjectProperties.javaTargetCompatibility
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = ProjectProperties.kotlinJvmTarget
     }
 }
 

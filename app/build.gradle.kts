@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.yuriisurzhykov.goaldestinator"
-    compileSdk = 34
+    compileSdk = ProjectProperties.compileSdk
 
     defaultConfig {
         applicationId = "com.yuriisurzhykov.goaldestinator"
-        minSdk = 26
-        targetSdk = 34
+        minSdk = ProjectProperties.minSdk
+        targetSdk = ProjectProperties.targetSdk
         versionCode = 1
         versionName = "1.0"
 
@@ -27,11 +27,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = ProjectProperties.javaSourceCompatibility
+        targetCompatibility = ProjectProperties.javaTargetCompatibility
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = ProjectProperties.kotlinJvmTarget
     }
 }
 
