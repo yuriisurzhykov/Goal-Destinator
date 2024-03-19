@@ -12,8 +12,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3.10.0
         with:
-          distribution: 'temurin'
-          java-version: '11'
+          distribution: 'corretto'
+          java-version: '17'
       - name: Super-Linter
         uses: super-linter/super-linter@v6.3.0
         env:
