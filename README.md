@@ -1,4 +1,4 @@
-[![Super linter](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![Super linter](https://github.com/yuriisurzhykov/Goal-Destinator/actions/workflows/lint_check_run.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
 
 # Goal Destinator
 
