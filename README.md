@@ -1,3 +1,5 @@
+[![Super-Linter](https://github.com/yuriisurzhykov/Goal-Destinator/actions/workflows/lint_check_run.yaml/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 # Goal Destinator
 
 ### Goal Destinator is a project or other say application that can help you to achieve your goal.

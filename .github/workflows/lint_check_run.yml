@@ -14,10 +14,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
-      - name: ktlint
-        uses: ScaCap/action-ktlint@1.5.1
-        with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
-          android: true
-          fail_on_error: true
+      - name: Super-Linter
+        uses: super-linter/super-linter@v6.3.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
