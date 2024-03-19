@@ -1,4 +1,5 @@
 [![Super linter](https://github.com/yuriisurzhykov/Goal-Destinator/actions/workflows/lint_check_run.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
+![Unit tests](https://github.com/yuriisurzhykov/Goal-Destinator/actions/workflows/android_tests_run.yml/badge.svg)
 
 # Goal Destinator
 
