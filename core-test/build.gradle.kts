@@ -1,6 +1,6 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -34,8 +34,8 @@ android {
 
 dependencies {
     api(project(":core"))
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
-    api("junit:junit:4.13.2")
-    api("androidx.test.ext:junit:1.1.5")
-    api("androidx.test.espresso:espresso-core:3.5.1")
+    api(libs.kotlinx.coroutines.test)
+    api(libs.junit)
+    api(libs.androidx.junit)
+    api(libs.androidx.espresso.core)
 }

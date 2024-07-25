@@ -44,7 +44,6 @@ class CenteredToolbar : Toolbar {
             centeredTitleTextView.ellipsize = TextUtils.TruncateAt.END
             centeredTitleTextView.gravity = Gravity.CENTER
             centeredTitleTextView.setTextAppearance(
-                context,
                 com.google.android.material.R.style.TextAppearance_Material3_ActionBar_Title
             )
 
