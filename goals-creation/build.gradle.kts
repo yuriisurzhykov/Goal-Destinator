@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.yuriisurzhykov.goaldestinator.goalsCreation"
+    namespace = "com.yuriisurzhykov.goaldestinator.goalscreation"
     compileSdk = ProjectProperties.compileSdk
 
     defaultConfig {
@@ -43,6 +43,7 @@ dependencies {
     implementation(project(":core"))
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.material3)
+    implementation(libs.compose.activity)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
 

@@ -37,6 +37,7 @@ android {
 
 dependencies {
     implementation(project(":quotes"))
+    implementation(project(":goals-creation"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

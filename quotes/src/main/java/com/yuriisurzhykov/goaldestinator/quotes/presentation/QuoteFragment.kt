@@ -1,5 +1,6 @@
 package com.yuriisurzhykov.goaldestinator.quotes.presentation
 
+import android.app.Activity
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.View
@@ -31,6 +32,12 @@ class QuoteFragment : Fragment(R.layout.fragment_quote_preview) {
         val authorView = view.findViewById<TextView>(R.id.author)
         viewModel?.observe(viewLifecycleOwner) {
             it.map(Quote.Mapper.ApplyToView(quoteTextView, authorView))
+        }
+        with(view.findViewById<View>(R.id.button)) {
+            setOnClickListener {
+                activity?.setResult(Activity.RESULT_OK)
+                activity?.finish()
+            }
         }
     }
 }
