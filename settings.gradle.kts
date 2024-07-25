@@ -13,8 +13,8 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Goal Destinator"
-include ':app'
-include ':core'
-include ':quotes'
-include ':core-test'
-include ':goals-creation'
+include(":app")
+include(":core")
+include(":quotes")
+include(":core-test")
+include(":goals-creation")
