@@ -1,11 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.ksp)
 }
 
 android {
-    namespace = "com.yuriisurzhykov.goaldestinator.goalscreation"
+    namespace = "com.yuriisurzhykov.goaldestinator.ui"
     compileSdk = ProjectProperties.compileSdk
 
     defaultConfig {
@@ -16,7 +15,7 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -40,20 +39,11 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
-    implementation(project(":presentation-core"))
+
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.material3)
-    implementation(libs.compose.activity)
-    implementation(libs.compose.ui)
-    implementation(libs.compose.ui.tooling.preview)
-
-    debugImplementation(libs.compose.ui.tooling)
-
-    ksp(libs.androidx.room.compiler)
-
-    testImplementation(project(":core-test"))
+    implementation(libs.compose.ui.graphics)
+    implementation(libs.androidx.core.ktx)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.compose.bom))
 }

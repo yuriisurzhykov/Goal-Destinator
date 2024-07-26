@@ -11,7 +11,11 @@ class MainActivity : FragmentActivity() {
 
     private val quoteActivityLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            startActivity(Intent(this, CreateGoalActivity::class.java))
+            startActivity(
+                Intent(this, CreateGoalActivity::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }
+            )
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {

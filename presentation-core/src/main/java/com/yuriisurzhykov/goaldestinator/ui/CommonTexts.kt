@@ -1,12 +1,13 @@
-package com.yuriisurzhykov.goaldestinator.goals.creation.common
+package com.yuriisurzhykov.goaldestinator.ui
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -16,6 +17,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+
+val DynamicTextFieldColors
+    @Composable
+    get() = OutlinedTextFieldDefaults.colors(
+        /*
+        focusedTextColor = MaterialTheme.colorScheme.onPrimaryContainer,
+        focusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
+        focusedBorderColor = MaterialTheme.colorScheme.primary
+        */
+    )
 
 @Composable
 fun TitleText(
@@ -57,7 +68,7 @@ fun SaveableTextField(
     var fieldInput by rememberSaveable {
         mutableStateOf("")
     }
-    TextField(
+    OutlinedTextField(
         modifier = modifier,
         value = fieldInput,
         onValueChange = { string ->
@@ -67,13 +78,14 @@ fun SaveableTextField(
         placeholder = {
             Text(
                 text = stringResource(id = hintStringRes),
-                style = MaterialTheme.typography.labelMedium.copy(
+                style = MaterialTheme.typography.bodyMedium.copy(
                     fontWeight = FontWeight.Normal
                 )
             )
         },
         shape = RoundedCornerShape(InputCornerRadius),
         keyboardActions = keyboardActions,
-        keyboardOptions = keyboardOptions
+        keyboardOptions = keyboardOptions,
+        colors = DynamicTextFieldColors
     )
 }

@@ -3,4 +3,5 @@
     <string name="label_create_goal_initial_title">Let\'s make your dream come true</string>
     <string name="label_create_goal_first_step_description">Let\'s start with the name for your future goal</string>
     <string name="hint_goal_create_name">Type name of a goal</string>
+    <string name="label_button_create_goal_next">Continue</string>
 </resources>
