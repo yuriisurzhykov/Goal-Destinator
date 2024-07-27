@@ -47,6 +47,7 @@ dependencies {
     implementation(libs.compose.activity)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.androidx.lifecycle.runtime.compose.android)
 
     debugImplementation(libs.compose.ui.tooling)
 
