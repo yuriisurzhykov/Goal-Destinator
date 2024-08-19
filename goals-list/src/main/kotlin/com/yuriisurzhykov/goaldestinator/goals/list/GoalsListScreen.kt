@@ -61,50 +61,38 @@ fun GoalsListScreen(
             )
             Spacer(modifier = Modifier.height(16.dp))
         }
-        Column(
-            modifier = modifier
-                .background(
-                    color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.8f),
-                    shape = RoundedCornerShape(DefaultContainerCornerRadius)
-                )
-                .fillMaxSize()
-                .padding(DefaultContentPadding)
-        ) {
-            LazyColumn(modifier = Modifier.verticalScroll(rememberScrollState())) {
-                item {
-                    Text(
-                        text = stringResource(id = R.string.label_title_tasks_in_progress),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(start = DefaultPadding, end = DefaultPadding),
-                        style = MaterialTheme.typography.labelLarge
-                    )
-                }
-                item {
-                    Spacer(modifier = Modifier.height(12.dp))
-                }
-                items(groupedGoals[false].orEmpty()) { goal ->
-                    GoalListView(goal = goal) { checked ->
-                        onGoalCheckedChanged.invoke(goal, checked)
-                    }
-                }
-                item {
-                    Spacer(modifier = Modifier.height(12.dp))
-                }
-                item {
-                    Text(
-                        text = stringResource(id = R.string.label_title_tasks_completed),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(start = DefaultPadding, end = DefaultPadding),
-                        style = MaterialTheme.typography.labelLarge
-                    )
-                }
-                items(groupedGoals[true].orEmpty()) { goal ->
-                    GoalListView(goal = goal) { checked ->
-                        onGoalCheckedChanged.invoke(goal, checked)
-                    }
-                }
+        item {
+            Text(
+                text = stringResource(id = R.string.label_title_tasks_in_progress),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = DefaultPadding, end = DefaultPadding),
+                style = MaterialTheme.typography.labelLarge
+            )
+        }
+        item {
+            Spacer(modifier = Modifier.height(12.dp))
+        }
+        items(groupedGoals[false].orEmpty()) { goal ->
+            GoalListView(goal = goal) { checked ->
+                onGoalCheckedChanged.invoke(goal, checked)
+            }
+        }
+        item {
+            Spacer(modifier = Modifier.height(12.dp))
+        }
+        item {
+            Text(
+                text = stringResource(id = R.string.label_title_tasks_completed),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = DefaultPadding, end = DefaultPadding),
+                style = MaterialTheme.typography.labelLarge
+            )
+        }
+        items(groupedGoals[true].orEmpty()) { goal ->
+            GoalListView(goal = goal) { checked ->
+                onGoalCheckedChanged.invoke(goal, checked)
             }
         }
     }

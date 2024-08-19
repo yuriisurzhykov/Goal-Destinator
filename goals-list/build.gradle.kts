@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.yuriisurzhykov.goaldestinator.goalscreation"
+    namespace = "com.yuriisurzhykov.goaldestinator.goals.list"
     compileSdk = ProjectProperties.compileSdk
 
     defaultConfig {
@@ -16,7 +16,7 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),

@@ -5,6 +5,7 @@ object ProjectProperties {
     const val compileSdk = 34
     const val targetSdk = 34
     const val kotlinJvmTarget = "17"
+    const val composeCompiler = "1.5.14"
     val javaSourceCompatibility = JavaVersion.VERSION_17
     val javaTargetCompatibility = JavaVersion.VERSION_17
 }

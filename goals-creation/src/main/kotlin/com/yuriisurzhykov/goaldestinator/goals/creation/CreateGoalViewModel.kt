@@ -4,7 +4,4 @@ import androidx.lifecycle.ViewModel
 
 class CreateGoalViewModel : ViewModel() {
 
-    fun updateGoalName(name: String) {
-
-    }
 }
