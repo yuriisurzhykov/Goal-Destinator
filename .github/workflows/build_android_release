@@ -1,0 +1,97 @@
+name: Release Build
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+-[A-Za-z0-9]+'
+      - '[0-9]+.[0-9]+.[0-9]+'
+      - '[0-9]+.[0-9]+.[0-9]+-[A-Za-z0-9]+'
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Android project
+        uses: actions/checkout@v5
+
+      - name: Read version properties
+        uses: madhead/read-java-properties@latest
+        id: versions
+        with:
+          file: app/version.properties
+          all: true
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
+        with:
+          java-version: '17'
+          distribution: 'corretto'
+          cache: gradle
+
+      - name: Setup Gradle Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/gradle-wrapper.properties') }}-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Configure Keystore
+        run: |
+          echo "$ANDROID_KEYSTORE_FILE" > app/keystore.jks.b64
+          base64 -d -i app/keystore.jks.b64 > app/keystore.jks
+          echo "storeFile=keystore.jks" >> app/signing.properties
+          echo "keyAlias=$KEYSTORE_KEY_ALIAS" >> app/signing.properties
+          echo "storePassword=$KEYSTORE_STORE_PASSWORD" >> app/signing.properties
+          echo "::debug::storePassword=$KEYSTORE_STORE_PASSWORD"
+          echo "keyPassword=$KEYSTORE_KEY_PASSWORD" >> app/signing.properties
+        env:
+          ANDROID_KEYSTORE_FILE: ${{ secrets.KEYSTORE_FILE }}
+          KEYSTORE_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEYSTORE_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew assembleRelease bundleRelease
+        env:
+          VERSION_CODE: ${{ github.run_number }}
+          VERSION_NAME: ${{ github.ref_name }}.${{ github.run_number }}
+
+      - name: Find APK files in the entire workspace
+        id: find-android-files
+        run: |
+          APK_PATH=$(find . -type f \( -name "*.apk" \) -print | head -1)
+          AAB_PATH=$(find . -type f \( -name "*.aab" \) -print | head -1)
+          echo "apk_location=$APK_PATH" >> $GITHUB_OUTPUT
+          echo "aab_location=$AAB_PATH" >> $GITHUB_OUTPUT
+
+      - name: Upload APK file to Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          path: ${{ steps.find-android-files.outputs.apk_location }}
+          name: APK Release ${{ github.ref_name }}
+
+      - name: Upload AAB file to Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          path: ${{ steps.find-android-files.outputs.aab_location }}
+          name: AAB Release ${{ github.ref_name }}
+
+      - name: Generate Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Release ${{ github.ref_name }}
+          draft: false
+          make_latest: true
+          fail_on_unmatched_files: true
+          generate_release_notes: true
+          files: |
+            ${{ steps.find-android-files.outputs.apk_location }}
+            ${{ steps.find-android-files.outputs.aab_location }}
