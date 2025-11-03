@@ -57,4 +57,5 @@ screen with no goal.
 
 ## Technology stack
 
-1. 
+1. https://github.com/DanielMartinus/Konfetti/tree/main – for confetti animation
+2. 
